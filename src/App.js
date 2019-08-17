@@ -1,49 +1,41 @@
-import React,{Component,Fragment} from 'react';
+import React,{Fragment} from 'react';
+import { BrowserRouter as Router,Switch,Route}  from 'react-router-dom';
 import Navbar from './components/layouts/navComponent';
-import User from './components/users/userComponent';
-import Axios from 'axios';
+import About from './components/layouts/aboutComponent';
+import NotFound from './components/layouts/notFoundComponent';
+import Home from './components/layouts/homeComponent';
+import UserDetails from './components/users/userDetailsComponent'
+import Alert from './components/layouts/alertComponent';
 import './App.css';
 
-class App extends Component {
+//import State
+import GithubState from './context/github/GithubState';
+import AlertState from './context/alert/AlertState';
 
-   async componentDidMount()   {
-    this.setState({
-        loading:true
-    });
-    let res = await Axios.get("https://api.github.com/users");
-    this.setState({
-        loading:false,
-        users:res.data
-    });
-            //   .then(res => {
-            //       console.log("componet did mount succesfully");
-            //       res.data.map(userObj => {
-            //          return console.log(userObj.login)
-            //       });
-            //       console.log(res.data[0].login)
-            //   });
-            //   .catch(err => console.log(res.err));
-    }
 
-    state = {
-        users: [],
-        loading: false
-    };
-
-  render() { 
-      const {loading,users} =this.state;
+const App = () => { 
+    
       return (
-          <Fragment>
-              <Navbar title={"GitFinder"} />
-              <div className="container">
-                    <User
-                     loading={loading}
-                     users={users} />                
-              </div>
-          </Fragment>
+          <GithubState>
+              <AlertState>
+                <Router>
+                    <Fragment>
+                            <Navbar title={"GitFinder"} />
+                            <div className="container">
+                                <Alert/>
+                                <Switch>
+                                    <Route exact path="/" component={Home}/>             
+                                    <Route exact path="/about"  component={About} />
+                                    <Route exact path="/user/:login"  component={UserDetails} />
+                                    <Route component={NotFound} />
+                                </Switch>
+                                                
+                            </div>
+                        </Fragment>
+                 </Router>
+              </AlertState>
+          </GithubState>
      );
-  }
-
 }
 
 

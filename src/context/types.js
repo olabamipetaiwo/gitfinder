@@ -1,0 +1,9 @@
+export const SEARCH_USER = 'SEARCH_USER';
+export const GET_USERS = 'GET_USERS';
+export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const GET_REPOS = 'GET_REPOS';
+export const CLEAR_USERS = 'CLEAR_USERS';
+export const SET_ALERT_MSG = 'SET_ALERT_MSG';
+export const SET_LOADING = 'SET_LOADING';
+export const REMOVE_ALERT_MSG = 'REMOVE_ALERT_MSG';
+export const SET_FOUND = 'SET_FOUND';

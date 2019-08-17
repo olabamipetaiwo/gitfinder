@@ -17,3 +17,11 @@ h2::first-letter {
 .container  {
   margin-top:1em;
 }
+
+.divifont {
+  color:red;
+}
+
+.navbar-brand {
+  color:white;
+}

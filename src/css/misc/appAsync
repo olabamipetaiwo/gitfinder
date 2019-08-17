@@ -1,0 +1,24 @@
+  // async componentDidMount()   {
+    //     setState({
+    //         loading:true
+    //     });
+    //     const GITFINDER_CLIENT_ID = '25897eb3c59731abe370';
+    //     const GITFINDER_CLIENT_SECRET = 'b79525c57e0a959d232869c3d9c8b5b37c6ec06f';
+    //     try {
+    //         const res = await Axios.get(`https://api.github.com/users?client_id=${GITFINDER_CLIENT_ID}&client_secret=${GITFINDER_CLIENT_SECRET}`);
+    //         if(res.data.total_count === 0) {
+    //             this.setState({
+    //                 loading:false,
+    //                 found:false
+    //             });
+    //         }else {
+    //             this.setState({
+    //                 loading:false,
+    //                 users:res.data,
+    //                 found:true
+    //             });
+    //          }
+    //     }catch(err) {
+    //         console.log("Error occured getting data");
+    //     }
+    //   }

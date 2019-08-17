@@ -1,4 +1,5 @@
 import React,{Fragment} from 'react';
+import {Link } from 'react-router-dom';
 
 const style= {
     backgroundColor:"#e3e1e1",
@@ -8,24 +9,23 @@ const style= {
     marginBottom:"5px"
 };
 
-const imgStyle = {
-    width:"100px",
-    height:"100px",
-    borderRadius:"50%",
-    margin:"5px 1px"
-}
+// const imgStyle = {
+//     width:"100px",
+//     height:"100px",
+//     borderRadius:"50%",
+//     margin:"5px 1px"
+// }
 
 const UserItem = (props) => {
 
-        const {login,avatar_url,html_url } = props.user;
+        const {login,avatar_url } = props.user;
         return (
             <Fragment>
                 <div  style={style} className="row">
                     <h2 className="text-primary">{login}</h2>
-                    <img src={avatar_url} style={imgStyle} className="img-responsive" alt={login} />
-                    <h3 className="text-primary">{avatar_url}</h3>
-                    <h3 className="text-primary">{html_url}</h3>
-                    <a href="l.com" className="btn btn-block btn-sm btn-primary">View More</a>
+                    {/* <img src={avatar_url} style={imgStyle} className="img-responsive" alt={login} /> */}
+                    <h3 className="text-primary">Image Link: {avatar_url}</h3>
+                    <Link to={`/user/${login}`} className="btn btn-block btn-sm btn-primary">View More</Link>
                 </div>
              </Fragment>
        );

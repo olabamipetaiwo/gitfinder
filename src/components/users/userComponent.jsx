@@ -1,32 +1,39 @@
-import React,{Fragment} from 'react';
+import React,{useContext,Fragment} from 'react';
 import UserItem from './userItemComponent';
 import Spinner from '../layouts/spinnerComponent';
-import PropTypes from 'prop-types';
+import GithubContext from '../../context/github/githubContext';
 
-const User = ({loading,users}) => { 
-       // const {loading,users} =this.props; Becauese thsi is a functional component
-       // we do not need the aboce line, we import and deconstructure it online 5
-        if(loading) {
+const User = () => { 
+     const githubContext = useContext(GithubContext);
+     const {loading,found,users} = githubContext;
+     if(loading) {
             return <Spinner />
         }else {
-            return (
-                <Fragment>
+            if(found) {
+                return (
+                    <Fragment>
+                        
+                         {  users.map(user => (
+                                <UserItem 
+                                    key={user.id}
+                                    user={user} 
+                                    loading= {loading} />
+                         ))}
+                     </Fragment>
+               );
+            }else {
+                return (
+                    <Fragment>
                     
-                     {  users.map(user => (
-                            <UserItem 
-                                key={user.id}
-                                user={user} 
-                                loading= {loading} />
-                     ))}
-                 </Fragment>
-           );
+                    <div className="row">
+                        <h2 className="text-danger">No user Found</h2>              
+                    </div>
+                </Fragment>
+                );
+            }
+           
         }
 }
-
- User.PropTypes = {
-     user:PropTypes.array.isRequired,
-     loading:PropTypes.bool.isRequired
- }
 
 
 export default User;
